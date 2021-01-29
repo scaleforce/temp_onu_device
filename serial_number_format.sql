@@ -16,9 +16,7 @@ WHERE mac_address REGEXP '^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
 -- Case "SY":
 
 SELECT
-    SUBSTR(serial_number, 1, 2) AS s_n_1_2,
-    SUBSTR(mac_address, 1, 8) AS mac_a_1_8,
-    onu_d.*
+    *
 FROM onu_device AS onu_d
 WHERE mac_address REGEXP '^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
     AND serial_number NOT REGEXP '^SY.*$'
