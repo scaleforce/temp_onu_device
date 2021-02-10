@@ -3,7 +3,21 @@
 -- Case "RL":
 
 SELECT
-    *
+    onu_d.*,
+    (
+        SELECT
+            CASE
+                WHEN EXISTS (
+                    SELECT
+                        *
+                    FROM onu_device_subscriber AS onu_d_s
+                    WHERE onu_d_s.onu_device_id = onu_d.onu_device_id
+                        AND onu_d_s.active = 1
+                )
+                THEN 1
+                ELSE 0
+            END
+    ) AS Assigned
 FROM onu_device AS onu_d
 WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
     AND type NOT LIKE 'ERP%'
@@ -26,7 +40,21 @@ WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
 -- Case "SY":
 
 SELECT
-    *
+    onu_d.*,
+    (
+        SELECT
+            CASE
+                WHEN EXISTS (
+                    SELECT
+                        *
+                    FROM onu_device_subscriber AS onu_d_s
+                    WHERE onu_d_s.onu_device_id = onu_d.onu_device_id
+                        AND onu_d_s.active = 1
+                )
+                THEN 1
+                ELSE 0
+            END
+    ) AS Assigned
 FROM onu_device AS onu_d
 WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
     AND type NOT LIKE 'ERP%'
@@ -46,7 +74,21 @@ WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
 -- Case "GNX":
 
 SELECT
-    *
+    onu_d.*,
+    (
+        SELECT
+            CASE
+                WHEN EXISTS (
+                    SELECT
+                        *
+                    FROM onu_device_subscriber AS onu_d_s
+                    WHERE onu_d_s.onu_device_id = onu_d.onu_device_id
+                        AND onu_d_s.active = 1
+                )
+                THEN 1
+                ELSE 0
+            END
+    ) AS Assigned
 FROM onu_device AS onu_d
 WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
     AND type NOT LIKE 'ERP%'

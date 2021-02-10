@@ -3,9 +3,21 @@
 -- Case "RL":
 
 SELECT
-    SUBSTR(serial_number, 1, 2) AS s_n_1_2,
-    SUBSTR(mac_address, 1, 8) AS mac_a_1_8,
-    onu_d.*
+    onu_d.*,
+    (
+        SELECT
+            CASE
+                WHEN EXISTS (
+                    SELECT
+                        *
+                    FROM onu_device_subscriber AS onu_d_s
+                    WHERE onu_d_s.onu_device_id = onu_d.onu_device_id
+                        AND onu_d_s.active = 1
+                )
+                THEN 1
+                ELSE 0
+            END
+    ) AS Assigned
 FROM onu_device AS onu_d
 WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
     AND type NOT LIKE 'ERP%'
@@ -27,9 +39,21 @@ WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
 -- Case "SY":
 
 SELECT
-    SUBSTR(serial_number, 1, 2) AS s_n_1_2,
-    SUBSTR(mac_address, 1, 8) AS mac_a_1_8,
-    onu_d.*
+    onu_d.*,
+    (
+        SELECT
+            CASE
+                WHEN EXISTS (
+                    SELECT
+                        *
+                    FROM onu_device_subscriber AS onu_d_s
+                    WHERE onu_d_s.onu_device_id = onu_d.onu_device_id
+                        AND onu_d_s.active = 1
+                )
+                THEN 1
+                ELSE 0
+            END
+    ) AS Assigned
 FROM onu_device AS onu_d
 WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
     AND type NOT LIKE 'ERP%'
@@ -51,9 +75,21 @@ WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
 -- Case "GNX":
 
 SELECT
-    SUBSTR(serial_number, 1, 3) AS s_n_1_3,
-    SUBSTR(mac_address, 1, 8) AS mac_a_1_8,
-    onu_d.*
+    onu_d.*,
+    (
+        SELECT
+            CASE
+                WHEN EXISTS (
+                    SELECT
+                        *
+                    FROM onu_device_subscriber AS onu_d_s
+                    WHERE onu_d_s.onu_device_id = onu_d.onu_device_id
+                        AND onu_d_s.active = 1
+                )
+                THEN 1
+                ELSE 0
+            END
+    ) AS Assigned
 FROM onu_device AS onu_d
 WHERE partner_id <> 1 -- 1 - Delhi, 27 - Hyderabad
     AND type NOT LIKE 'ERP%'
